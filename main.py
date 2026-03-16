@@ -1,28 +1,44 @@
-from Sections import mean, median
+from Sections import meanCalc, medianCalc, rangeCalc
+from consolemenu import *
+from consolemenu.items import *
 import os
 
-numList = []
-canContinue = True
+menu = ConsoleMenu("Math Helper")
+#os.system("clear")
 
-os.system("clear")
+def CalculateMMR():
+    #os.system("clear")
+    canContinueMMR = True
+    numListMMR = []
+
+    while canContinueMMR:
+        ans = input("Please input a whole number OR input X to exit continue: ")
+        if ans.lower() != "x":
+            ans = int(ans)
+
+            numListMMR.append(ans)
+        else:
+            canContinueMMR = False
+
+    mea = meanCalc.get_mean_from_list(numListMMR)
+    med = medianCalc.get_median_from_list(numListMMR)
+    ran = rangeCalc.get_range_from_list(numListMMR)
+
+    menu.screen.printf("Mean: " + str(mea))
+    menu.screen.printf("Median: " + str(med))
+    menu.screen.printf("Range: " + str(ran))
 
 
-while canContinue:
-    ans = input("Please input number OR input X to exit continue: ")
-    if ans.lower() != "x":
-        ans = int(ans)
-
-        numList.append(ans)
-    else:
-        canContinue = False
-
-mea = mean.get_mean_from_list(numList)
-med = median.get_median_from_list(numList)
-
-print("Mean: " + str(mea))
-print("Median: " + str(med))
 
 
-os.exit(1)
 
 
+
+
+MMR = FunctionItem("Mean, Median, Range Calculator", CalculateMMR)
+
+
+menu.append_item(MMR)
+
+
+menu.show()
