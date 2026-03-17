@@ -1,4 +1,4 @@
-from Sections import meanCalc, medianCalc, rangeCalc
+from Sections import *
 from consolemenu import *
 from consolemenu.items import *
 import os
@@ -23,12 +23,29 @@ def CalculateMMR():
     mea = meanCalc.get_mean_from_list(numListMMR)
     med = medianCalc.get_median_from_list(numListMMR)
     ran = rangeCalc.get_range_from_list(numListMMR)
+    stdev = standardCalc.get_stdev_from_list(numListMMR)
 
-    menu.screen.printf("Mean: " + str(mea))
-    menu.screen.printf("Median: " + str(med))
-    menu.screen.printf("Range: " + str(ran))
+    os.system("clear")  # or "cls" on Windows
+
+    print("=== Results ===")
+    print(f"Mean: {mea}")
+    print(f"Median: {med}")
+    print(f"Range: {ran}")
+    print(f"Standard Deviation: {stdev}")
+    input("\nPress Enter to return...") 
 
 
+
+def calculateSqRt():
+    os.system("clear")
+
+    question = input("Please enter the number you'd like to Square Root: ")
+
+    if int(question) >= 0:
+        regSqRoot.regular_sqrt(int(question))
+    else:
+        advSqRt.advanced_sqrt(float(question))
+        
 
 
 
